@@ -35,7 +35,8 @@ def scrape_and_look_for_next_link(url):
     root = lxml.html.fromstring(html)
     scrape_table(root)
     next_link = root.cssselect("a.next")
-    print next_link
+    print next_link #this will print an lxml object, so it won't make much sense
+    print next_link[0].attrib.get('href') #print the href attribute to see what it is
     if next_link:
         next_url = urlparse.urljoin(base_url, next_link[0].attrib.get('href'))
         print next_url
